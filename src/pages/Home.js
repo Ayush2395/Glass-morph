@@ -10,7 +10,7 @@ function Home() {
         <div className="row">
           <div className="col">
             <span>Hello, I'm</span>
-            <h1>ayush</h1>
+            <h1>Ayush</h1>
             <h3>
               <Typewriter
                 loop
