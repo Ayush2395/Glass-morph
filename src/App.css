@@ -1,38 +1,327 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* -----------
+Google Fonts
+------------ */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap");
+
+/* ----------
+Variables
+---------- */
+:root {
+  --black: #000000;
+  --dark-yellow: #ffac41;
+  --blue: #323232;
+  --pink: #ff1e56;
+  --container-bg: rgba(255, 255, 255, 0.1);
+  --text-white: #fff;
+  --text-white-70: rgba(255, 255, 255, 0.7);
+  --text-white-40: rgba(255, 255, 255, 0.4);
+  --text-white-25: rgba(255, 255, 255, 0.25);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
   min-height: 100vh;
+  background-image: linear-gradient(to bottom right, var(--blue), var(--black));
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.container {
+  height: 80vh;
+  width: 1200px;
+  background-color: var(--container-bg);
+  border-radius: 10px;
+  border: 1px solid var(--text-white-40);
+  backdrop-filter: blur(3px);
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.col {
+  position: relative;
+  top: 140px;
+  width: 500px;
+}
+
+.col > span {
+  font-size: 16px;
+  color: var(--text-white-70);
+}
+
+.col > h1 {
+  font-size: 50px;
+  color: var(--text-white);
+  text-transform: capitalize;
+}
+
+.col > h3 {
+  font-size: 32px;
+  color: var(--pink);
+}
+
+.col > .img-box {
+  height: 385px;
+  width: 385px;
+}
+.col > .img-box > img {
+  width: 385px;
+  border-radius: 50%;
+  position: relative;
+  left: 8px;
+  top: 10px;
+  z-index: -1;
+}
+
+.col > .img-box {
+  position: relative;
+  top: -60px;
+}
+
+.col > .img-box::before {
+  content: "";
+  position: absolute;
+  height: 385px;
+  width: 385px;
+  border: 8px solid var(--text-white-40);
+  border-radius: 50%;
+}
+
+.btn-grp {
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 20px;
+}
+
+.btn {
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+  background-color: transparent;
   color: white;
+  font-size: 16px;
+  text-transform: capitalize;
+  border: 2px solid var(--pink);
+  border-radius: 80px;
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 40px;
+  width: 0;
+  background-color: var(--dark-yellow);
+  border-radius: 80px;
+  z-index: -1;
+  transition: width 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn1:hover::before {
+  content: "";
+  width: 120px;
+  border: 80px;
+}
+
+.btn2::before {
+  content: "";
+  position: absolute;
+  left: 160px;
+  top: 0;
+  height: 40px;
+  width: 0;
+  background-color: var(--dark-yellow);
+  border-radius: 80px;
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.btn2:hover::before {
+  content: "";
+  width: 120px;
+  border: 80px;
+}
+
+/* -----------
+Navigation menu
+------------- */
+
+.hide {
+  visibility: hidden;
+  transition: all 0.4s linear;
+  /* opacity: 1; */
+}
+
+.active {
+  visibility: visible;
+  transition: all 0.3s linear;
+}
+
+nav {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+nav > ul {
+  list-style: none;
+}
+
+nav > ul > li > a {
+  text-decoration: none;
+  font-size: 50px;
+  line-height: 1.8;
+  color: var(--dark-yellow);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.list-items a {
+  transition: all 0.4s linear;
+}
+
+.list-items a:hover {
+  border-bottom: 2px solid var(--dark-yellow);
+}
+
+.nav-toggler {
+  position: absolute;
+  top: 110px;
+  right: 210px;
+  background-color: var(--text-white-25);
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.nav-toggler span {
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 25px;
+  border-radius: 5px;
+  transform-origin: center;
+  background-color: var(--dark-yellow);
+  transition: all 0.4s ease;
+}
+
+.nav-toggler span::before {
+  transition: all 0.4s ease;
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 12.5px;
+  transform-origin: top left;
+  top: 13px;
+  left: 12px;
+  border-radius: 5px;
+  background-color: var(--dark-yellow);
+}
+.nav-toggler span::after {
+  transition: all 0.4s ease;
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 12.5px;
+  transform-origin: bottom right;
+  bottom: 13px;
+  right: 12px;
+  border-radius: 5px;
+  background-color: var(--dark-yellow);
+}
+
+.nav-toggler.open span::after {
+  transform: translate(-1px, 12px) rotate(90deg);
+}
+
+.nav-toggler.open span {
+  transform: rotate(-45deg);
+}
+
+.nav-toggler.open span::before {
+  transform: translate(3px, -11px) rotate(90deg);
+}
+
+/* bubbles effects */
+.shapes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  height: 80px;
+  width: 80px;
+  background-color: var(--pink);
+  border-radius: 50%;
+  position: absolute;
+  left: 120px;
+  top: 250px;
+  animation: scale 2s ease infinite;
+}
+
+.bar {
+  position: relative;
+  left: 45px;
+  height: 5px;
+  width: 90px;
+  margin: auto;
+  border-radius: 5px;
+  transform-origin: top left;
+  background-color: var(--dark-yellow);
+  animation: rotate 10s linear infinite;
+}
+
+.clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 150px;
+  right: 120px;
+  height: 180px;
+  width: 180px;
+  border: 8px dotted var(--pink);
+  border-radius: 50%;
+}
+
+@keyframes scale {
+  0%,
+  100% {
+    transform: scale(120px);
   }
-  to {
+  50% {
+    transform: scale(0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
     transform: rotate(360deg);
   }
 }
